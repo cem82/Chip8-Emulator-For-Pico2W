@@ -328,6 +328,12 @@ A dedicated handheld enclosure
 
 A playable CHIP-8 **Breakout** game is currently running on the Raspberry Pi Pico 2 with the SSD1306 OLED display.
 
+<img width="595" height="795" alt="image" src="https://github.com/user-attachments/assets/01eb28a3-8f44-4f86-a3e6-1125d9250b67" />
+
+<img width="442" height="791" alt="image" src="https://github.com/user-attachments/assets/dac15120-1d95-4d9a-974e-d7d3d8a1735a" />
+
+
+
 ## AI Disclosure
 
 AI tools were used as a learning and development aid during this project.
