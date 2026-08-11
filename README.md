@@ -334,6 +334,10 @@ A playable CHIP-8 **Breakout** game is currently running on the Raspberry Pi Pic
 
 
 
+https://github.com/user-attachments/assets/2ab30b52-054f-4e9b-bafb-76a39644e9f9
+
+
+
 ## AI Disclosure
 
 AI tools were used as a learning and development aid during this project.
