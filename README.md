@@ -8,28 +8,45 @@ The emulator is capable of running CHIP 8 programs directly on the Pico 2. Curre
 
 ## Features
 
-* CHIP 8 CPU emulation
-* 4 KB CHIP-8 memory
-* 16 general-purpose 8-bit registers (`V0`–`VF`)
-* 16-bit program counter
-* 16-level stack
-* 16-bit `I` register
-* CHIP 8 delay and sound timers
-* 64×32 CHIP-8 display
-* CHIP 8 keypad input
-* Sprite rendering with XOR drawing and collision detection
-* Built in CHIP-8 font data
-* Embedded CHIP 8 ROM
-* SSD1306 output over I2C
-* Physical button input
-* Runs on Raspberry Pi Pico 2W
+CHIP 8 CPU emulation
+
+4 KB CHIP-8 memory
+
+16 general-purpose 8-bit registers (`V0`–`VF`)
+
+16-bit program counter
+
+16-level stack
+
+16-bit `I` register
+
+CHIP 8 delay and sound timers
+
+64×32 CHIP-8 display
+
+CHIP 8 keypad input
+
+Sprite rendering with XOR drawing and collision detection
+
+Built in CHIP-8 font data
+
+Embedded CHIP 8 ROM
+
+SSD1306 output over I2C
+
+Physical button input
+
+Runs on Raspberry Pi Pico 2W
 
 ## Hardware
 
-* Raspberry Pi Pico 2W
-* SSD1306 128×64 OLED display
-* 2 push buttons
-* Jumper wires / breadboard
+Raspberry Pi Pico 2W
+
+SSD1306 128×64 OLED display
+
+2 push buttons
+
+Jumper wires / breadboard
 
 The OLED is connected through I2C. The current implementation uses GPIO 0 for SDA and GPIO 1 for SCL.
 
@@ -40,7 +57,7 @@ The OLED is connected through I2C. The current implementation uses GPIO 0 for SD
 | Left   | `4`        |
 | Right  | `6`        |
 
-The current implementation maps the physical buttons to CHIP-8 keys `4` and `6`.
+The current implementation maps the physical buttons to CHIP 8 keys `4` and `6`.
 
 ## CHIP 8 Architecture
 
@@ -101,26 +118,45 @@ The emulator extracts the different parts of the opcode using bitwise operations
 
 The emulator implements the main CHIP 8 instruction groups, including:
 
-* `6XNN` — Set register
-* `7XNN` — Add value to register
-* `3XNN` / `4XNN` — Conditional skips
-* `5XY0` / `9XY0` — Register comparisons
-* `1NNN` — Jump
-* `2NNN` — Subroutine call
-* `00E0` — Clear screen
-* `00EE` — Return from subroutine
-* `8XYN` — Arithmetic and bitwise operations
-* `ANNN` — Set `I` register
-* `BNNN` — Jump with offset
-* `CXNN` — Random number
-* `DXYN` — Sprite drawing and collision detection
-* `EX9E` / `EXA1` — Key handling
-* `FX07`, `FX15`, `FX18` — Timer operations
-* `FX0A` — Wait for key press
-* `FX1E` — Add register to `I`
-* `FX29` — Font character address
-* `FX33` — Binary-coded decimal conversion
-* `FX55` / `FX65` — Memory/register transfers
+`6XNN` Set register
+
+`7XNN` Add value to register
+
+`3XNN` / `4XNN` Conditional skips
+
+`5XY0` / `9XY0` Register comparisons
+
+`1NNN` Jump
+
+`2NNN` Subroutine call
+
+`00E0` Clear screen
+
+`00EE` Return from subroutine
+
+`8XYN` Arithmetic and bitwise operations
+
+`ANNN` Set `I` register
+
+`BNNN` Jump with offset
+
+`CXNN` Random number
+
+`DXYN` Sprite drawing and collision detection
+
+`EX9E` / `EXA1` Key handling
+
+`FX07`, `FX15`, `FX18` Timer operations
+
+`FX0A` Wait for key press
+
+`FX1E` Add register to `I`
+
+`FX29` Font character address
+
+`FX33` Binary-coded decimal conversion
+
+`FX55` / `FX65` Memory/register transfers
 
 The instruction decoder is implemented using a `switch` structure based on the first hexadecimal digit of the opcode, with nested decoding for instruction groups such as `8XYN`, `EXNN`, and `FXNN`.
 
@@ -163,8 +199,9 @@ The physical buttons are read using the Pico SDK's GPIO functions and mapped to 
 
 CHIP 8 provides two timers:
 
-* Delay Timer
-* Sound Timer
+Delay Timer
+
+Sound Timer
 
 Both timers are decremented while they are above zero.
 
@@ -173,15 +210,17 @@ Both timers are decremented while they are above zero.
 The emulator uses the standard CHIP 8 program start address:
 
 ```text
-0x000 ────────────────
-        System / reserved
-0x050 ────────────────
-        Font data
-0x200 ────────────────
-        CHIP-8 program
-        ↓
-        ROM
-0xFFF ────────────────
+0x000
+System / reserved
+
+0x050
+Font data
+
+0x200
+CHIP-8 program
+ROM
+
+0xFFF
 ```
 
 The built in font is loaded at `0x50`, while the ROM is loaded starting at `0x200`.
@@ -189,6 +228,7 @@ The built in font is loaded at `0x50`, while the ROM is loaded starting at `0x20
 ## Running a CHIP-8 Program
 
 The current implementation embeds the CHIP 8 ROM directly into the firmware as a byte array and copies it into CHIP 8 memory at runtime.
+
 A complete game of Breakout was successfully tested on the emulator.
 
 ## Build
@@ -197,13 +237,19 @@ This project uses the Raspberry Pi Pico SDK and the Pico C toolchain.
 
 The firmware uses:
 
-* C
-* Raspberry Pi Pico SDK
-* I2C
-* SSD1306 driver
-* Hardware GPIO
-* `stdint.h`
-* Standard C library
+C
+
+Raspberry Pi Pico SDK
+
+I2C
+
+SSD1306 driver
+
+Hardware GPIO
+
+`stdint.h`
+
+Standard C library
 
 The OLED is initialized through the I²C peripheral at 400 kHz.
 
@@ -224,57 +270,76 @@ CHIP-8-Pico2/
 
 This project was primarily built as a learning project for embedded systems and low-level programming.
 
-Topics covered during development:
+Binary and hexadecimal representation
 
-* Binary and hexadecimal representation
-* Bitwise operators
-* Bit masking
-* Bit shifting
-* Fixed-width integer types
-* Registers
-* Memory addressing
-* Program counters
-* Stack-based subroutines
-* CPU instruction decoding
-* Fetch–Decode–Execute architecture
-* Emulator design
-* Embedded C
-* GPIO
-* I2C communication
-* OLED display control
-* Hardware input handling
+Bitwise operators
+
+Bit masking
+
+Bit shifting
+
+Fixed-width integer types
+
+Registers
+
+Memory addressing
+
+Program counters
+
+Stack-based subroutines
+
+CPU instruction decoding
+
+Fetch Decode Execute architecture
+
+Emulator design
+
+Embedded C
+
+GPIO
+
+I2C communication
+
+OLED display control
+
+Hardware input handling
 
 ## Future Improvements
 
-Possible improvements include:
+Support for more physical CHIP-8 keys
 
-* Support for more physical CHIP-8 keys
-* A complete 16-button keypad
-* Better timing accuracy
-* Sound output
-* External ROM loading
-* Multiple ROM support
-* More CHIP-8 compatibility testing
-* A custom PCB
-* A dedicated handheld enclosure
+A complete 16-button keypad
+
+Better timing accuracy
+
+Sound output
+
+External ROM loading
+
+Multiple ROM support
+
+More CHIP-8 compatibility testing
+
+A custom PCB
+
+A dedicated handheld enclosure
 
 ## Demo
 
 A playable CHIP-8 **Breakout** game is currently running on the Raspberry Pi Pico 2 with the SSD1306 OLED display.
 
-<img width="595" height="797" alt="image" src="https://github.com/user-attachments/assets/8e34edf5-c442-4914-91c7-78b5d2c75b58" />
-
-
 ## AI Disclosure
 
 AI tools were used as a learning and development aid during this project.
 
-* **Learning:** AI was used to help explain concepts related to C, hexadecimal and binary representation, bitwise operations, CPU architecture, and CHIP-8 emulation.
-* **Porting:** AI assisted with adapting the emulator from a desktop environment to the Raspberry Pi Pico 2 and its hardware peripherals.
-* **ROM preparation:** AI assisted with converting and preparing ROM data so it could be embedded into the Pico 2 firmware.
-* **Documentation:** A large portion of this README was initially generated with AI assistance. I reviewed, edited, and verified the content before including it in the repository.
+**Learning:** AI was used to help explain concepts related to C, hexadecimal and binary representation, bitwise operations, CPU architecture, and CHIP-8 emulation.
+
+**Porting:** AI assisted with adapting the emulator from a desktop environment to the Raspberry Pi Pico 2 and its hardware peripherals.
+
+**ROM preparation:** AI assisted with converting and preparing ROM data so it could be embedded into the Pico 2 firmware.
+
+**Documentation:** A large portion of this README was initially generated with AI assistance. I reviewed, edited, and verified the content before including it in the repository.
 
 The emulator's concepts, implementation, debugging, and hardware integration were studied and tested during the development process. AI was used as an assistant rather than as a replacement for understanding or testing the code.
-
 
 This project is primarily intended as an educational and experimental project.
