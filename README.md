@@ -338,13 +338,15 @@ A playable CHIP-8 **Breakout** game is currently running on the Raspberry Pi Pic
 
 AI tools were used as a learning and development aid during this project.
 
-**Learning:** AI was used to help explain concepts related to C, hexadecimal and binary representation, bitwise operations, CPU architecture, and CHIP-8 emulation.
+**Learning:** AI was used to help explain concepts related to hexadecimal and binary representation, bitwise operations, CPU architecture, and CHIP-8 emulation.
 
 **Porting:** AI assisted with adapting the emulator from a desktop environment to the Raspberry Pi Pico 2 and its hardware peripherals.
 
 **ROM preparation:** AI assisted with converting and preparing ROM data so it could be embedded into the Pico 2 firmware.
 
 **Documentation:** A large portion of this README was initially generated with AI assistance. I reviewed, edited, and verified the content before including it in the repository.
+
+Rest of the code, structure, comments were all made by me (mostly on paper) 
 
 The emulator's concepts, implementation, debugging, and hardware integration were studied and tested during the development process. AI was used as an assistant rather than as a replacement for understanding or testing the code.
 
